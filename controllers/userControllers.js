@@ -103,11 +103,11 @@ export const loginUser = async(req,res)=>{
    console.log( "token is  " + token)
   
 
- // ✅ SET COOKIE PROPERLY
+ // ✅ SET COOKIE PROPERLY (cross-site safe for Vercel/Render)
  res.cookie("token", token, {
   httpOnly: true,
-  secure: process.env.NODE_ENV === "production",
-  sameSite: "lax",
+  secure: true,
+  sameSite: "none",
   maxAge: 7 * 24 * 60 * 60 * 1000
 });
   // dont know what .. taht .. 3rd things in objects .. koi jaruri cheeze hongi .. mujhe kyaaa
@@ -933,8 +933,8 @@ export const recentOrdersForUser = async (req, res) => {
 
       res.clearCookie("token", {
         httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        sameSite: "lax"
+        secure: true,
+        sameSite: "none"
       });
 
 

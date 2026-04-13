@@ -89,8 +89,8 @@ export const loginBoy = async (req,res)=>{
 
     res.cookie("deliveryBoyToken", token, {
     httpOnly:true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite:"lax",
+    secure: true,
+    sameSite: "none",
     maxAge:7*24*60*60*1000
 });
 
@@ -477,8 +477,8 @@ export const logoutDeliveryBoy = async(req,res)=>{
 
     res.clearCookie("deliveryBoyToken", {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax"
+      secure: true,
+      sameSite: "none"
     });
 
     return res.status(200).json({message : "logout successfull!!"});

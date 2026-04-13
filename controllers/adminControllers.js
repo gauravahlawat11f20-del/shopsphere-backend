@@ -109,8 +109,8 @@ export const loginAdmin = async(req,res)=>{
         // ✅ SET COOKIE PROPERLY
     res.cookie("adminToken", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "lax",
+      secure: true,
+      sameSite: "none",
       maxAge: 7 * 24 * 60 * 60 * 1000
      });
 
@@ -190,8 +190,8 @@ export const logout=async(req,res)=>{
 
            res.clearCookie("adminToken", {
     httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "lax"
+    secure: true,
+    sameSite: "none"
   }); // token is removed from the cookie !!1
 
 

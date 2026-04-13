@@ -41,7 +41,11 @@ const ALLOWED_ORIGINS = [
 
 const io = new Server(server, {
   cors: {
-    origin: CLIENT_ORIGIN,
+    origin: [
+      "http://localhost:5173",
+      "https://shopsphere-frontend-miau.vercel.app"
+    ],
+    methods: ["GET", "POST"],
     credentials: true
   }
 });
@@ -59,11 +63,10 @@ io.on("connection", (socket) => {
 
 // CORS (frontend allowed)
 app.use(cors({
-  origin: (origin, callback) => {
-    if (!origin) return callback(null, true);
-    if (ALLOWED_ORIGINS.includes(origin)) return callback(null, true);
-    return callback(new Error("Not allowed by CORS"));
-  },
+  origin: [
+    "http://localhost:5173",
+    "https://shopsphere-frontend-miau.vercel.app"
+  ],
   credentials: true
 }));
 
